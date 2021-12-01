@@ -1,0 +1,72 @@
+spring:
+  application:
+    name: payments-sepa-bl-connector-${service.mode}
+  profiles:
+    active: dev
+  kafka:
+    bootstrap-servers: ${bootstrap-servers:localhost:9092}
+    properties:
+      schema.registry.url: ${schema.registry.url:http://localhost:8081}
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: io.confluent.kafka.serializers.KafkaAvroSerializer
+      enable.idempotence: true
+
+#Connection details for reading messages from BottomLine MQ
+ibm:
+  mq:
+    queueManager: POCQM
+    channel: POC.SVRCONN
+    connName: 192.168.0.248(1414)
+    user:
+    password:
+server:
+  port : 8086
+service:
+  mode: inbound
+  modes:
+    inbound:
+      queue: EAI.SCT_BL_RECPMT.REQ
+      rawtopic: private.payments.sepa.inbound.raw.dev
+      headers:
+        status: SEPA-INBOUND-PAYMENT-RECEIVED
+        monitoring: SEPA-INBOUND-PAYMENT-RECEIVED
+    return:
+      queue: EAI.SCT_BL_RECPMTRTN.REQ
+      rawtopic: private.payments.sepa.inbound.return.raw.dev
+      headers:
+        status: SEPA-INBOUND-PAYMENT-RETURN-RECEIVED
+        monitoring: SEPA-INBOUND-PAYMENT-RETURN-RECEIVED
+    recall:
+      queue: EAI.SCT_BL_RECPMTRECALL.REQ
+      rawtopic: private.payments.sepa.inbound.recall.raw.dev
+      headers:
+        status: SEPA-INBOUND-PAYMENT-RECALL-RECEIVED
+        monitoring: SEPA-INBOUND-PAYMENT-RECALL-RECEIVED
+    positiverecall:
+      queue: EAI.SCT_BL_RECPMTPSVRECALL.REQ
+      rawtopic: private.payments.sepa.inbound.positive.recall.raw.dev
+      headers:
+        status: SEPA-INBOUND-PAYMENT-POSTIVE-RECALL-RECEIVED
+        monitoring: SEPA-INBOUND-PAYMENT-POSTIVE-RECALL-RECEIVED
+    negativerecall:
+      queue: EAI.SCT_BL_RECPMTNGVRECALL.REQ
+      rawtopic: private.payments.sepa.inbound.negative.recall.raw.dev
+      headers:
+        status: SEPA-INBOUND-PAYMENT-NEGATIVE-RECALL-RECEIVED
+        monitoring: SEPA-INBOUND-PAYMENT-NEGATIVE-RECALL-RECEIVED
+    reject:
+      queue: EAI.SCT_BL_RECPMTREJECT.REQ
+      rawtopic: private.payments.sepa.inbound.reject.raw.dev
+      headers:
+        status: SEPA-INBOUND-PAYMENT-ACK-NACK-RECEIVED
+        monitoring: SEPA-INBOUND-PAYMENT-ACK-NACK-RECEIVED
+logging:
+  #file.name: ${spring.application.name}.log
+  pattern:
+    console: '%d{MM-dd-yyyy HH:mm:ss} %X{uuid} [%thread] %-4r %-5level %logger{50} - %msg%n'
+  #    file: '%d{MM-dd-yyyy HH:mm:ss} %X{uuid} [%thread] %-4r %-5level %logger{50} - %msg%n'
+  level:
+    root: INFO
+    org.apache.kafka: ERROR
+    com.metrobank: DEBUG

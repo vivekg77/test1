@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Document xmlns="urn:iso:std:iso:20022:tech:xsd:pacs.008.001.02">
+  <FIToFICstmrCdtTrf>
+    <GrpHdr>
+      <MsgId>0203299999</MsgId>
+      <CreDtTm>2017-03-02T07:38:20</CreDtTm>
+      <NbOfTxs>1</NbOfTxs>
+      <TtlIntrBkSttlmAmt Ccy="EUR">3150.00</TtlIntrBkSttlmAmt>
+      <IntrBkSttlmDt>2017-03-02</IntrBkSttlmDt>
+      <SttlmInf>
+        <SttlmMtd>CLRG</SttlmMtd>
+        <ClrSys>
+          <Prtry>ST2</Prtry>
+        </ClrSys>
+      </SttlmInf>
+      <InstdAgt>
+        <FinInstnId>
+          <BIC>MYMBGB2L</BIC>
+        </FinInstnId>
+      </InstdAgt>
+    </GrpHdr>
+    <CdtTrfTxInf>
+      <PmtId>
+        <EndToEndId>IAIRLeFxxxxxxxx9999</EndToEndId>
+        <TxId>B170301M2543452</TxId>
+      </PmtId>
+      <PmtTpInf>
+        <SvcLvl>
+          <Cd>SEPA</Cd>
+        </SvcLvl>
+      </PmtTpInf>
+      <IntrBkSttlmAmt Ccy="EUR">3150.00</IntrBkSttlmAmt>
+      <ChrgBr>SLEV</ChrgBr>
+      <InstgAgt>
+        <FinInstnId>
+          <BIC>BBRUBEBB</BIC>
+        </FinInstnId>
+      </InstgAgt>
+      <Dbtr>
+        <Nm>PENNYBRIDGE AB</Nm>
+        <PstlAdr>
+          <Ctry>SE</Ctry>
+          <AdrLine>ALXXXMAGATAN 99</AdrLine>
+          <AdrLine>99999 OREBRO</AdrLine>
+        </PstlAdr>
+      </Dbtr>
+      <DbtrAcct>
+        <Id>
+          <IBAN>SE9180000845259237799999</IBAN>
+        </Id>
+      </DbtrAcct>
+      <DbtrAgt>
+        <FinInstnId>
+          <BIC>SWEDSESS</BIC>
+        </FinInstnId>
+      </DbtrAgt>
+      <CdtrAgt>
+        <FinInstnId>
+          <BIC>MYMBGB2L</BIC>
+        </FinInstnId>
+      </CdtrAgt>
+      <Cdtr>
+        <Nm>IAIR AWARDS LIMITED</Nm>
+        <PstlAdr>
+          <Ctry>GB</Ctry>
+          <AdrLine>SUITE 99 DREW HOUSE 99 WHARF STREET</AdrLine>
+          <AdrLine>LONDON, ZZ8 3ZZ UNITED KINGDOM</AdrLine>
+        </PstlAdr>
+        <Id>
+          <PrvtId>
+            <Othr>
+              <Id>IAIR Le XXXXX XXXXXX</Id>
+            </Othr>
+          </PrvtId>
+        </Id>
+      </Cdtr>
+      <CdtrAcct>
+        <Id>
+          <IBAN>GB27MYMB99998017199999</IBAN>
+        </Id>
+      </CdtrAcct>
+    </CdtTrfTxInf>
+  </FIToFICstmrCdtTrf>
+</Document>
